@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { CriarTrajetoPage } from '../criartrajeto/criartrajeto';
+import { DatePicker } from '@ionic-native/date-picker';
 
 declare var google;
 
@@ -10,12 +12,25 @@ declare var google;
 
 export class HomePage {
 	@ViewChild('map') mapElement: ElementRef;
-	map: any;
+	public btStart = true;
+	public etapa1 = false;
+	public etapa2 = false;
 
-	constructor(public navCtrl: NavController) {
+	map: any;
+	push: any;
+	constructor(public navCtrl: NavController,
+		public datePicker: DatePicker) {
 	}
+	//	this.loadMap();
 	ionViewDidLoad(){
-		this.loadMap();
+		this.datePicker.show({
+			date: new Date(),
+			mode: 'date',
+			androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+		}).then(
+		date => console.log('Got date: ', date),
+		err => console.log('Error occurred while getting date: ', err)
+		);
 	}
 	loadMap(){
 		var latlng = {lat: -19.9061619, lng: -43.9442227};
@@ -29,7 +44,23 @@ export class HomePage {
 		var marker = new google.maps.Marker({
 			position: latlng,
 			map: map,
-          	title: 'Minha localização'
+			title: 'Minha localização'
 		});
 	}
+	hideBtStart(objs){
+		this.btStart = false;
+		this.etapa1 = true;
+	}
+	hideEtapa1(){
+		this.etapa1 = false;
+	}
+
+	onSuccess(date) {
+		alert('Selected date: ' + date);
+	}
+
+	onError(error){
+		alert('Error: ' + error);
+	}
+
 }

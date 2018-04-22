@@ -2,8 +2,10 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { DatePicker } from '@ionic-native/date-picker';
 
 import { PerfilPage } from '../pages/perfil/perfil';
+import { CriarTrajetoPage } from '../pages/criartrajeto/criartrajeto';
 import { AgendamentoPage } from '../pages/agendamento/agendamento';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -17,7 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     PerfilPage,
-    AgendamentoPage
+    AgendamentoPage,
+    CriarTrajetoPage
   ],
   imports: [
     BrowserModule,
@@ -29,11 +32,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     PerfilPage,
-    AgendamentoPage
+    AgendamentoPage,
+    CriarTrajetoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    DatePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
