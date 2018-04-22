@@ -11,32 +11,25 @@ declare var google;
 export class HomePage {
 	@ViewChild('map') mapElement: ElementRef;
 	map: any;
-	
+
 	constructor(public navCtrl: NavController) {
-		
 	}
 	ionViewDidLoad(){
 		this.loadMap();
 	}
 	loadMap(){
-		var uluru = {lat: -25.363, lng: 131.044};
+		var latlng = {lat: -19.9061619, lng: -43.9442227};
 		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 4,
-			center: uluru
+			zoom: 17,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			disableDefaultUI: true,
+			draggable: false
 		});
 		var marker = new google.maps.Marker({
-			position: uluru,
-			map: map
+			position: latlng,
+			map: map,
+          	title: 'Minha localização'
 		});
-		let latLng = new google.maps.LatLng(-34.9290, 138.6010);
-
-		let mapOptions = {
-			center: latLng,
-			zoom: 15,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
-
-		this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
 	}
 }
